@@ -1,0 +1,8 @@
+# remember to symlink this to your ~/.ssh/config
+# ln -s ~/Development/dotfiles/ssh/config ~/.ssh/config
+
+LogLevel=quiet
+
+Host paradigm
+  HostName 192.168.104.2
+  User dpsuser

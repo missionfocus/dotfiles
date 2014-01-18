@@ -1,0 +1,4 @@
+# remember to symlink this to your ~/.gemrc
+# ln -s ~/Development/dotfiles/ruby/gemrc ~/.gemrc
+
+gem: --no-ri --no-rdoc

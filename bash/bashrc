@@ -1,0 +1,5 @@
+# Symlink to this file from ~/.bashrc
+
+source ./env
+source ./config
+source ./aliases

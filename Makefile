@@ -10,7 +10,7 @@ install_dotfiles:
 #	@ln -sf $(CURDIR)/git/gitconfig $(TARGET)/.gitconfig
 #	@ln -sf $(CURDIR)/ruby/gemrc $(TARGET)/.gemrc
 
-	# @ln -sf $(SOURCE)/bin $(TARGET)/
+	@ln -sf $(SOURCE)/bin $(TARGET)/
 	@mkdir -p ~/.ssh/
 	@chmod 700 ~/.ssh/
 	@ln -sf $(SOURCE)/ssh/config ~/.ssh/config

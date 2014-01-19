@@ -6,8 +6,8 @@ all: clean install
 install_dotfiles:
 	@ln -sf $(CURDIR)/bash/bashrc $(TARGET)/.bashrc
 	@ln -sf $(CURDIR)/zsh/zshrc $(TARGET)/.zshrc
-	@ln -sf $(CURDIR)/git/gitconfig $(TARGET)/.gitconfig
-	@ln -sf $(CURDIR)/ruby/gemrc $(TARGET)/.gemrc
+#	@ln -sf $(CURDIR)/git/gitconfig $(TARGET)/.gitconfig
+#	@ln -sf $(CURDIR)/ruby/gemrc $(TARGET)/.gemrc
 
 	# @ln -sf $(SOURCE)/bin $(TARGET)/
 	@mkdir -p ~/.ssh/

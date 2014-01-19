@@ -1,6 +1,6 @@
 ## Environment
 export LC_CTYPE=en_US.UTF-8
-export PATH=$PATH:~/Development/dotfiles/bin:.
+export PATH=$PATH:~/bin:
 
 ## Aliases
 # Or source from bash aliases, which use the same syntax
@@ -223,3 +223,6 @@ compinit
 WORDCHARS=${WORDCHARS//[&=\/;\!#%\{]}
 
 bindkey -e
+
+# Set up the boxen environment if installed from boxen
+[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh

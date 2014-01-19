@@ -1,6 +1,7 @@
 SOURCE	:= $(CURDIR)
 TARGET	:= $(HOME)
-all: clean install
+
+all: install
 
 
 install_dotfiles:

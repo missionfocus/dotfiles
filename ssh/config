@@ -1,6 +1,3 @@
-# remember to symlink this to your ~/.ssh/config
-# ln -s ~/Development/dotfiles/ssh/config ~/.ssh/config
-
 LogLevel=quiet
 
 Host paradigm

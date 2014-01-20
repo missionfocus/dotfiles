@@ -1,7 +1,141 @@
-# Symlink to this file from ~/.zshrc
-# You should also symlink ~/.zshenv to zsh/env in this directory
+# Environment
+export LC_CTYPE=en_US.UTF-8
 
-source ./config
-source ./aliases
-source ./env
+export PATH=$PATH:~/bin:
 
+#Aliases
+# Or source from bash aliases, which use the same syntax
+
+# move to the directory of the front finder window
+cdf() {
+  target=`osascript -e 'tell application "Finder" to get POSIX path of (target of front Finder window as text)'`
+  cd "$target"
+}
+
+# open current directory in finder
+alias f='open -a Finder ./'
+
+
+# Quick way to rebuild the Launch Services database and get rid
+# of duplicates in the Open With submenu.
+alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
+
+alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"		# print the directory structure underneath '.'
+
+# Quickly get image dimensions from the command line
+function imgsize() {
+	local width height
+	if [[ -f $1 ]]; then
+		height=$(sips -g pixelHeight "$1"|tail -n 1|awk '{print $2}')
+		width=$(sips -g pixelWidth "$1"|tail -n 1|awk '{print $2}')
+		echo "${width} x ${height}"
+	else
+		echo "File not found"
+	fi
+}
+
+# suspend current account - effectively go to sleep and present login window
+alias suspend='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
+
+# URL-encode strings
+alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
+
+alias ql='qlmanage -p "$@" &gt;&amp; /dev/null'       # quick view file
+
+# Open google chrome from command line
+alias chrome="open -a \"Google Chrome\""
+
+# copy output of last command to clipboard
+alias cl="fc -e -|pbcopy"
+
+# copy the working directory path
+alias cpwd='pwd|tr -d "\n"|pbcopy'
+
+# flush DNS
+alias flush="sudo killall -HUP mDNSResponder"
+
+# Get your current public IP
+alias ip="curl icanhazip.com"
+
+# Get your current public IP to clipboard
+alias cip="curl icanhazip.com|pbcopy"
+
+# mute the system volume
+alias stfu="osascript -e 'set volume output muted true'"
+
+# list TODO/FIX from the current project
+alias todos="ack -n --nogroup '(TODO|FIX(ME)>):'"
+
+# git stuff
+gc() {
+  git diff --cached | grep '\btap[ph]\b' >/dev/null &&
+    echo "\e[0;31;29mOops, there's a #tapp or similar in that diff.\e[0m" ||
+    git commit -v "$@"
+}
+git_current_branch() {
+  cat "$(git rev-parse --git-dir 2>/dev/null)/HEAD" | sed -e 's/^.*refs\/heads\///'
+}
+alias glog='git log --date-order --pretty="format:%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset"'
+alias gl='glog --graph'
+alias gla='gl --all'
+
+#config
+autoload -U colors
+colors
+setopt prompt_subst
+
+# Save a smiley to a local variable if the last command exited with success.
+local smiley="%(?,%{$fg[green]%}☺%{$reset_color%},%{$fg[red]%}☹%{$reset_color%})"
+
+PROMPT='%{$fg[black]%}
+%~
+${smiley}  %{$reset_color%}'
+
+RPROMPT='%{$fg[black]%} $(git_cwd_info)%{$reset_color%}'
+
+# Set RPROMPT to have info show up on the right, too.
+
+#############################
+# Other Options
+
+# setopt PRINT_EXIT_VALUE
+
+setopt CORRECT
+setopt CORRECTALL
+
+setopt hist_ignore_dups     # ignore duplication command history list
+setopt share_history        # share command history data
+setopt HIST_IGNORE_SPACE
+setopt APPEND_HISTORY # write history only when closing
+setopt EXTENDED_HISTORY # add more info
+
+# Other tabbing options
+# setopt NO_AUTO_MENU
+# setopt BASH_AUTO_LIST
+
+#############################
+# Variables
+
+# Quote pasted URLs
+autoload url-quote-magic
+zle -N self-insert url-quote-magic
+
+HISTFILE=~/.zsh_history
+SAVEHIST=10000
+HISTSIZE=10000
+
+REPORTTIME=10 # Show elapsed time if command took more than X seconds
+LISTMAX=0 # ask to complete if top of list would scroll off screen
+
+# Load completions for Ruby, Git, etc.
+autoload compinit
+compinit
+
+# Make CTRL-W delete after other chars, not just spaces
+WORDCHARS=${WORDCHARS//[&=\/;\!#%\{]}
+
+bindkey -e
+
+
+# Set up the boxen environment if installed from boxen
+[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh

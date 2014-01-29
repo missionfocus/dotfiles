@@ -1,5 +1,3 @@
-# Copy this file or single lines to ~/.gitconfig
-
 [alias]
   co = checkout
   # Log display from screencast, with train tracks.
@@ -14,30 +12,6 @@
   # Usage: git track origin/feature-123-login-form
   track = checkout -t
 
-  # KSShow gives you the contents of an arbitrary sha in Kaleidoscope.
-  # To open the most recent commit on the current branch in Kaleidoscope 
-  # `git ksshow`
-  # To open an arbitrary sha in Kaleidoscope
-  # `git ksshow some-sha`
-
-  ksshow = "!sh -c 'SHA=${1:-HEAD}; git difftool -y -t Kaleidoscope $SHA^..$SHA;' -"
-  
-  
-  # To review HEAD with master as your mainline branch
-  # `git ksreview`
-  #
-  #To review a branch or sha when master is your mainline branch
-  #`git ksreview some-feature-branch-or-sha`
-  
-  # To review a branch (or sha) by name with a custom mainline branch
-  # `git ksreview some-feature-branch-or-sha mainline-branch`
-
-  ksreview = "!sh -c 'SHA=${1:-HEAD}; BRANCH=${2:-master}; if [ $SHA == $BRANCH ] ; then SHA=HEAD; fi; git difftool -y -t Kaleidoscope $BRANCH...$SHA;' -"
-
-  # KSDiff is just a more compact version of `difftool -y -t Kaleidoscope` for people who don't use Kaleidoscope as the default difftool.
-  ksdiff = difftool -y -t Kaleidoscope  
-  # To see the contents of the most recent commit
-  #`git ksdiff HEAD^..HEAD`  
 
 [apply]
   whitespace = warn

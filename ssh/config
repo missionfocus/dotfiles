@@ -2,4 +2,4 @@ LogLevel=quiet
 
 Host paradigm
   HostName 192.168.104.2
-  User dpsuser
+  User ussuser

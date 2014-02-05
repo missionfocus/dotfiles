@@ -14,10 +14,15 @@ cdf() {
 # open current directory in finder
 alias f='open -a Finder ./'
 
-# use dash as man pages
+# use dash as man pages if dash installed
 function dash()
 {
-    open dash://manpages:"$@"
+    if [ -f /Applications/Dash.app ] 
+    then
+      open dash://manpages:"$@"
+    else
+      man "$@"
+    fi
 }
 
 # change to use the dash app for viewing docs 

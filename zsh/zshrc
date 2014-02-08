@@ -231,8 +231,7 @@ bindkey -e
 
 # If Ruby is installed with boxen rbenv, set the global version
 if [[ -s /opt/boxen/rbenv/bin ]] ; then
-  rbenv global 2.0.0-p247
-
+  rbenv global 2.0.0-p353
 fi
 # Set up the boxen environment if installed from boxen
 [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh

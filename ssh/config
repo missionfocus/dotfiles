@@ -10,3 +10,7 @@ Host bleewire
 Host paradigm
   HostName 192.168.104.2
   User dpsuser
+
+Host nas
+  HostName 192.168.1.31
+  User maeick

@@ -3,9 +3,9 @@
 
 LogLevel=quiet
 
-Host bleewire
-  HostName bleewire.com
-  User maeick
+Host linode	
+  HostName www.missionfocus.com
+  User webuser
 
 Host paradigm
   HostName 192.168.104.2

@@ -3,13 +3,11 @@
 
 LogLevel=quiet
 
-Host linode	
+Host mf	
   HostName www.missionfocus.com
-  User webuser
+  User maeick
+  Port 49999
 
-Host paradigm
-  HostName 192.168.104.2
-  User dpsuser
 
 Host nas
   HostName 192.168.1.31
